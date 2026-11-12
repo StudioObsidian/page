@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Obsidian – Architektur für Minecraft</title>
+<meta name="description" content="Studio Obsidian plant und baut Minecraft-Architektur: Städte, Burgen, Server-Spawns und Redstone-Technik nach Maß.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟪</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --obsidian:#1a1425;
+  --deepslate:#2a2733;
+  --stone:#d9d5cc;
+  --portal:#9a5cff;
+  --kupfer:#3fb59a;
+  --text:#ece8f4;
+  --muted:#a9a3b8;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--obsidian);color:var(--text);font:400 1.0625rem/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--kupfer);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--head);line-height:1.08;margin:0}
+h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;letter-spacing:-.01em;margin-bottom:1rem}
+h3{font-size:1.3rem;font-weight:500;margin-bottom:.4rem}
+p{margin:0 0 1rem;max-width:62ch}
+
+header.top{position:sticky;top:0;z-index:5;background:rgba(26,20,37,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--deepslate)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.7rem;font-family:var(--head);font-weight:800;font-size:1.15rem;text-decoration:none}
+.logo i{width:22px;height:22px;background:var(--portal);box-shadow:inset -5px -5px 0 #6a34c4,inset 5px 5px 0 #b98bff;display:block}
+nav a{margin-left:1.4rem;text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--text)}
+
+.hero{padding:4rem 0 5rem}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
+.hero p.lead{font-size:1.25rem;color:var(--muted);margin:1.4rem 0 2rem}
+.btn{display:inline-block;padding:.85rem 1.5rem;background:var(--portal);color:#150d24;font-weight:500;text-decoration:none;border-radius:2px;box-shadow:4px 4px 0 var(--kupfer)}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--kupfer)}
+.btn.ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 2px var(--deepslate);margin-left:.6rem}
+#tower{width:100%;height:auto;max-height:470px}
+#tower .layer{animation:bauen .6s cubic-bezier(.2,.8,.3,1) both}
+@keyframes bauen{from{opacity:0;transform:translateY(-40px)}to{opacity:1;transform:none}}
+#tower .glow{filter:drop-shadow(0 0 14px #9a5cff)}
+
+section{padding:4.5rem 0}
+.light{background:var(--stone);color:#221d2c}
+.light p{color:#4a4358}
+.light .box{border-color:#221d2c}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;margin-top:2rem}
+.box{border:2px solid var(--deepslate);padding:1.4rem;background:transparent}
+.box p{margin:0;font-size:1rem}
+.light .box{background:#e7e3da}
+
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.proj article{background:var(--deepslate);padding:0 0 1.4rem}
+.proj .tile{height:150px;margin-bottom:1.1rem;background-size:30px 30px;image-rendering:pixelated}
+.t1{background-color:#3e3a4a;background-image:linear-gradient(90deg,#34303f 50%,transparent 50%),linear-gradient(#34303f 50%,transparent 50%)}
+.t2{background-color:#2f6b5c;background-image:linear-gradient(90deg,#3fb59a 50%,transparent 50%),linear-gradient(#378f7b 50%,transparent 50%)}
+.t3{background-color:#4a2a86;background-image:linear-gradient(90deg,#9a5cff 50%,transparent 50%),linear-gradient(#6a34c4 50%,transparent 50%)}
+.proj h3,.proj p,.proj dl{padding:0 1.4rem}
+.proj dl{margin:1rem 0 0;display:flex;gap:1.4rem;color:var(--muted);font-size:.95rem}
+.proj dt{font-size:.85rem}
+.proj dd{margin:0;color:var(--text);font-weight:500}
+
+ol.steps{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:0;border-left:4px solid #221d2c;max-width:720px}
+ol.steps li{padding:0 0 1.6rem 1.6rem;position:relative}
+ol.steps li::before{content:"";position:absolute;left:-12px;top:.45rem;width:20px;height:20px;background:var(--portal);box-shadow:inset -4px -4px 0 #6a34c4}
+ol.steps b{font-family:var(--head);font-size:1.2rem;display:block}
+
+.kontakt{text-align:left}
+.kontakt a.mail{font-family:var(--head);font-weight:800;font-size:clamp(1.4rem,4vw,2.4rem);color:var(--kupfer);word-break:break-all}
+footer{padding:2rem 0;border-top:1px solid var(--deepslate);color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between}
+
+@media (max-width:800px){
+  .hero .wrap{grid-template-columns:1fr}
+  nav a:not(:last-child){display:none}
+  .btn.ghost{margin:.8rem 0 0}
+}
+@media (prefers-reduced-motion:reduce){
+  #tower .layer{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>Studio Obsidian</a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Wir planen Welten, bevor der erste Block fällt.</h1>
+        <p class="lead">Studio Obsidian entwirft und baut Minecraft-Architektur: Städte, Burgen, Server-Spawns und Redstone-Technik, von der Skizze bis zur fertigen Welt.</p>
+        <a class="btn" href="#kontakt">Projekt anfragen</a>
+        <a class="btn ghost" href="#projekte">Projekte ansehen</a>
+      </div>
+      <svg id="tower" viewBox="0 0 400 400" role="img" aria-label="Isometrischer Turm aus Blöcken, oben mit leuchtendem Portal-Block"></svg>
+    </div>
+  </div>
+
+  <section id="leistungen" class="light">
+    <div class="wrap">
+      <h2>Was wir bauen</h2>
+      <p>Jedes Projekt beginnt mit einem Bauplan und endet mit einer Welt, in der sich Spielerinnen und Spieler sofort zurechtfinden.</p>
+      <div class="grid">
+        <div class="box"><h3>Städte und Dörfer</h3><p>Straßenzüge, Viertel und Marktplätze mit einheitlichem Stil und klaren Wegen.</p></div>
+        <div class="box"><h3>Burgen und Festungen</h3><p>Wehranlagen, Türme und Throne, in Szene gesetzt mit Licht und Material.</p></div>
+        <div class="box"><h3>Server-Spawns</h3><p>Lobbys und Hubs, die neue Spieler führen und den Charakter Ihres Servers zeigen.</p></div>
+        <div class="box"><h3>Redstone-Technik</h3><p>Aufzüge, Tore, Farmen und Schaltungen, die zuverlässig laufen und gut dokumentiert sind.</p></div>
+        <div class="box"><h3>Landschaftsbau</h3><p>Berge, Flüsse und Wälder, die sich natürlich in Ihre Bauten einfügen.</p></div>
+        <div class="box"><h3>Innenarchitektur</h3><p>Möblierung, Beleuchtung und Details, die Räume bewohnt aussehen lassen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projekte">
+    <div class="wrap">
+      <h2>Ausgewählte Projekte</h2>
+      <p>Drei Beispiele aus unserem Portfolio. Weitere Arbeiten zeigen wir auf Anfrage.</p>
+      <div class="proj">
+        <article>
+          <div class="tile t1" role="img" aria-label="Steingraue Blockfläche"></div>
+          <h3>Festung Tiefenschiefer</h3>
+          <p>Eine Bergfestung mit Innenhof, Waffenkammer und Tunnelsystem für ein Rollenspiel-Server-Team.</p>
+          <dl><div><dt>Bauzeit</dt><dd>6 Wochen</dd></div><div><dt>Größe</dt><dd>400 × 300 Blöcke</dd></div></dl>
+        </article>
+        <article>
+          <div class="tile t2" role="img" aria-label="Grünliche Blockfläche in Kupfertönen"></div>
+          <h3>Kupferhafen</h3>
+          <p>Eine Hafenstadt mit oxidierten Kupferdächern, Docks und schiffbaren Kanälen.</p>
+          <dl><div><dt>Bauzeit</dt><dd>9 Wochen</dd></div><div><dt>Größe</dt><dd>700 × 700 Blöcke</dd></div></dl>
+        </article>
+        <article>
+          <div class="tile t3" role="img" aria-label="Violette Blockfläche"></div>
+          <h3>Portalhalle</h3>
+          <p>Ein Spawn-Hub mit zwölf Portalen zu den Spielmodi eines Minigame-Servers.</p>
+          <dl><div><dt>Bauzeit</dt><dd>3 Wochen</dd></div><div><dt>Größe</dt><dd>150 × 150 Blöcke</dd></div></dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf" class="light">
+    <div class="wrap">
+      <h2>So arbeiten wir</h2>
+      <ol class="steps">
+        <li><b>Gespräch</b>Wir klären Stil, Größe, Version (Java oder Bedrock) und Ihr Budget.</li>
+        <li><b>Entwurf</b>Sie erhalten Skizzen und eine Materialpalette zur Freigabe.</li>
+        <li><b>Rohbau</b>Wir bauen Form und Gelände und zeigen Ihnen den Stand per Screenshot oder Serverzugang.</li>
+        <li><b>Details</b>Innenräume, Licht und Redstone entstehen im letzten Schritt.</li>
+        <li><b>Übergabe</b>Sie erhalten die Welt als Download oder direkt auf Ihrem Server, inklusive Bauplan.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="kontakt" class="kontakt">
+    <div class="wrap">
+      <h2>Was soll als Nächstes entstehen?</h2>
+      <p>Schreiben Sie uns kurz, was Sie vorhaben. Wir melden uns innerhalb von zwei Werktagen.</p>
+      <a class="mail" href="mailto:hallo@studio-obsidian.example">hallo@studio-obsidian.example</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Studio Obsidian</span>
+    <span>Dies ist ein unabhängiges Studio. Minecraft ist eine Marke von Mojang AB.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var svg=document.getElementById('tower'),ns='http://www.w3.org/2000/svg';
+  var W=26,H=15,V=30,cx=200,cy=200;
+  // Schichten: Größe, Einrückung, Farbton, Sättigung, Helligkeit
+  var layers=[
+    {n:5,o:0,h:260,s:8,l:30},{n:5,o:0,h:260,s:8,l:36},
+    {n:3,o:1,h:35,s:6,l:60},{n:3,o:1,h:35,s:6,l:66},
+    {n:1,o:2,h:265,s:55,l:30},{n:1,o:2,h:268,s:95,l:62,glow:true}
+  ];
+  function hsl(h,s,l){return 'hsl('+h+' '+s+'% '+l+'%)'}
+  function poly(pts,fill){var p=document.createElementNS(ns,'polygon');p.setAttribute('points',pts);p.setAttribute('fill',fill);p.setAttribute('stroke','rgba(0,0,0,.35)');p.setAttribute('stroke-width','1');return p}
+  layers.forEach(function(L,z){
+    var g=document.createElementNS(ns,'g');
+    g.setAttribute('class','layer'+(L.glow?' glow':''));
+    g.style.animationDelay=(z*0.25)+'s';
+    var cells=[];
+    for(var x=0;x<L.n;x++)for(var y=0;y<L.n;y++)cells.push([x+L.o,y+L.o]);
+    cells.sort(function(a,b){return (a[0]+a[1])-(b[0]+b[1])});
+    cells.forEach(function(c){
+      var sx=cx+(c[0]-c[1])*W, sy=cy+(c[0]+c[1])*H-z*V;
+      g.appendChild(poly([sx,sy,sx+W,sy+H,sx,sy+2*H,sx-W,sy+H].join(' '),hsl(L.h,L.s,L.l+10)));
+      g.appendChild(poly([sx-W,sy+H,sx,sy+2*H,sx,sy+2*H+V,sx-W,sy+H+V].join(' '),hsl(L.h,L.s,L.l)));
+      g.appendChild(poly([sx,sy+2*H,sx+W,sy+H,sx+W,sy+H+V,sx,sy+2*H+V].join(' '),hsl(L.h,L.s,L.l-10)));
+    });
+    svg.appendChild(g);
+  });
+})();
+</script>
+</body>
+</html>
