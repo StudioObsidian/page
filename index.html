@@ -85,6 +85,13 @@ section{padding:6rem 0}
 .rahmen .nr{font:400 .8rem var(--head);letter-spacing:.25em;text-transform:uppercase;color:#cfc3b6}
 .rahmen h3{margin-bottom:.3rem}
 .rahmen p{margin:0;font-size:.95rem;color:#d8d1c7}
+.rahmen article.projekt{aspect-ratio:auto;border:1px solid rgba(255,255,255,.35);padding:0;justify-content:flex-start;background:rgba(0,0,0,.4)}
+.rahmen article.projekt img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-bottom:1px solid rgba(255,255,255,.35)}
+.rahmen article.projekt .info{padding:1.4rem}
+.rahmen article.projekt dl{margin:1rem 0 0;display:grid;grid-template-columns:auto 1fr;gap:.3rem 1rem;font-size:.9rem;color:#d8d1c7}
+.rahmen article.projekt dt{font:500 .75rem var(--head);letter-spacing:.2em;text-transform:uppercase;color:#cfc3b6;padding-top:.15rem}
+.rahmen article.projekt dd{margin:0}
+.rahmen article.leer{aspect-ratio:auto;min-height:260px}
 .hinweis{margin-top:2rem;padding:1.4rem 1.6rem;border-left:3px solid var(--white);background:rgba(0,0,0,.35);max-width:70ch}
 .hinweis p{margin:0}
 
@@ -190,13 +197,40 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-be
     <div class="wrap">
       <span class="tag" style="color:#cfc3b6">02 · Projekte</span>
       <h2>Unsere Bauwerke</h2>
-      <p>Wir sind ein junges Büro und sammeln gerade unsere ersten fertigen Bauwerke. Die Plätze unten sind für kommende Projekte reserviert.</p>
+      <p>Wir sind ein junges Büro und sammeln unsere ersten fertigen Bauwerke. Hier seht ihr die ersten Projekte.</p>
       <div class="rahmen">
-        <article><span class="nr">Projekt 01</span><div><h3>Platzhalter</h3><p>Hier erscheint bald unser erstes fertiges Bauwerk.</p></div></article>
-        <article><span class="nr">Projekt 02</span><div><h3>Platzhalter</h3><p>Noch in Planung oder im Bau.</p></div></article>
-        <article><span class="nr">Projekt 03</span><div><h3>Platzhalter</h3><p>Dieser Platz ist für das nächste Projekt reserviert.</p></div></article>
+        <!-- PROJEKT 1: Titel, Text und Angaben unten selbst ersetzen -->
+        <article class="projekt">
+          <img src="images/projekt-1.jpg" alt="Lagerhaus mit Holzdach, Laternen und gepflastertem Vorplatz" loading="lazy">
+          <div class="info">
+            <span class="nr">Projekt 01</span>
+            <h3>Projekttitel hier eintragen</h3>
+            <p>Beschreibung hier eintragen.</p>
+            <dl>
+              <dt>Ort</dt><dd>Koordinaten</dd>
+              <dt>Bauzeit</dt><dd>Angabe</dd>
+              <dt>Bau</dt><dd>Name</dd>
+            </dl>
+          </div>
+        </article>
+        <!-- PROJEKT 2 -->
+        <article class="projekt">
+          <img src="images/projekt-2.jpg" alt="Modernes weißes Haus mit dunklem Turm, großen Glasflächen und Laternen" loading="lazy">
+          <div class="info">
+            <span class="nr">Projekt 02</span>
+            <h3>Projekttitel hier eintragen</h3>
+            <p>Beschreibung hier eintragen.</p>
+            <dl>
+              <dt>Ort</dt><dd>Koordinaten</dd>
+              <dt>Bauzeit</dt><dd>Angabe</dd>
+              <dt>Bau</dt><dd>Name</dd>
+            </dl>
+          </div>
+        </article>
+        <!-- Platz für das nächste Projekt (Block löschen, wenn nicht gewünscht) -->
+        <article class="leer"><span class="nr">Projekt 03</span><div><h3>Platzhalter</h3><p>Dieser Platz ist für das nächste Projekt reserviert.</p></div></article>
       </div>
-      <div class="hinweis"><p>Sobald Projekte fertig sind, zeigen wir sie hier mit Bildern, Koordinaten, Bauzeit und Stil.</p></div>
+      <div class="hinweis"><p>Weitere Bauwerke folgen, sobald sie fertig sind.</p></div>
     </div>
   </section>
 
@@ -222,7 +256,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-be
         <div>
           <p>Anfragen sind für Mitglieder unseres Servers gedacht. Schreib uns, was du vorhast, am besten mit diesen Angaben:</p>
           <p><a class="btn-dunkel" href="https://forms.gle/uhoSDFyBGLZ8ud2o6" target="_blank" rel="noopener">Zum Anfrageformular</a></p>
-          <p style="margin-top:2rem">Oder schreib uns per E-Mail::<br><a class="mail" href="mailto:info.at.studioobsidian@gmail.com">info.at.studioobsidian@gmail.com</a></p>
+          <p style="margin-top:2rem">Oder schreib uns per E-Mail:<br><a class="mail" href="mailto:info.at.studioobsidian@gmail.com">info.at.studioobsidian@gmail.com</a></p>
         </div>
         <ul>
           <li><b>Bereich</b>Stadt, Industrie, Haus, Landschaft</li>
